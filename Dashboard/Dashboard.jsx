@@ -6,6 +6,7 @@ import UseOwner from "../Hooks/UseOwner";
 import { Helmet } from "react-helmet-async";
 import UseAdmin from "../Hooks/UseAdmin";
 import UseDriver from "../Hooks/UseDriver";
+import UsePassenger from "../Hooks/usePassenger";
 
 
 
@@ -16,6 +17,7 @@ const DashBoard = () => {
     const [isowner] = UseOwner()
     const [isadmin] = UseAdmin()
     const[isdriver] = UseDriver()
+    const[ispassenger] = UsePassenger()
     return (
         <div>
             <Navbar></Navbar>
@@ -42,6 +44,9 @@ const DashBoard = () => {
                         }
                         {
                             isdriver && <h1 className="ml-16 w-1/2 text-right flex mt-4 bg-cyan-300 rounded-md font-bold items-center text-lg justify-center">Role : Driver </h1>
+                        }
+                        {
+                            ispassenger && <h1 className="ml-16 w-1/2 text-right flex mt-4 bg-lime-300 rounded-md font-bold items-center text-base justify-center">Role : Passenger </h1>
                         }
                     </div>
 
@@ -94,6 +99,20 @@ const DashBoard = () => {
                                 }}
                             >
                                <p className=" text-center w-full  p-2  ">Service Status</p>
+                            </NavLink>
+                            <NavLink
+                                to="/dashboard/owner/vehicleStatus"
+                                style={({ isActive, isPending, isTransitioning }) => {
+                                    return {
+                                        fontWeight: isActive ? "bold" : "",
+                                        background:isActive? " rgb(233,182,63)":"",
+                                        padding:isActive? "4px":"",
+                                        color: isPending ? "red" : "black",
+                                        viewTransitionName: isTransitioning ? "slide" : "",
+                                    };
+                                }}
+                            >
+                               <p className=" text-center w-full  p-2  ">Vehicle Status</p>
                             </NavLink>
                         </div>
                     }
@@ -183,6 +202,59 @@ const DashBoard = () => {
                             >
                                <p className=" text-center w-full  p-2  ">DrivingStatus</p>
                             </NavLink>
+                            <NavLink
+                                to="/dashboard/driver/ride"
+                                style={({ isActive, isPending, isTransitioning }) => {
+                                    return {
+                                        fontWeight: isActive ? "bold" : "",
+                                        background:isActive? " rgb(233,182,63)":"",
+                                        padding:isActive? "4px":"",
+                                        color: isPending ? "red" : "black",
+                                        viewTransitionName: isTransitioning ? "slide" : "",
+                                    };
+                                }}
+                            >
+                               <p className=" text-center w-full  p-2  ">Ride</p>
+                            </NavLink>
+                            <NavLink
+                                to="/dashboard/driver/payment"
+                                style={({ isActive, isPending, isTransitioning }) => {
+                                    return {
+                                        fontWeight: isActive ? "bold" : "",
+                                        background:isActive? " rgb(233,182,63)":"",
+                                        padding:isActive? "4px":"",
+                                        color: isPending ? "red" : "black",
+                                        viewTransitionName: isTransitioning ? "slide" : "",
+                                    };
+                                }}
+                            >
+                               <p className=" text-center w-full  p-2  ">Payment</p>
+                            </NavLink>
+                        </div>
+                    }
+
+                    {/* Passenger DashBoard */}
+                    {
+                        ispassenger && <div className="mt-8 flex flex-col space-y-4">
+                          
+                          {/* navlink is a active route and indicates which url/component is currently active */}
+                            <NavLink
+                                to="/dashboard/passenger/ride"
+                                // custom style is applied for three conditions
+                                style={({ isActive, isPending, isTransitioning }) => {
+                                    // ? is a ternary oparator
+                                    return {
+                                        fontWeight: isActive ? "bold" : "",
+                                        background:isActive? " rgb(233,182,63)":"",
+                                        padding:isActive? "4px":"",
+                                        color: isPending ? "red" : "black",
+                                        viewTransitionName: isTransitioning ? "slide" : "",
+                                    };
+                                }}
+                            >
+                                <p className=" text-center w-full  p-2 ">Ride</p>
+                            </NavLink>
+                           
                         </div>
                     }
 
