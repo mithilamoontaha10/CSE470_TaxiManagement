@@ -15,6 +15,18 @@ import DrivingRequest from "../Dashboard/Driver/DrivingRequest";
 import AdminDrivingRequest from "../Dashboard/Admin/AdminDrivingRequest";
 import DrivingStatus from "../Dashboard/Driver/DrivingStatus";
 import UpdateVehicleStatus from "../Dashboard/Driver/UpdateVehicleStatus";
+import Ride from "../Ride/Ride";
+import PassengerRide from "../Dashboard/Passenger/PassengerRide";
+import Payment from "../Dashboard/Passenger/Payment";
+import DriverRide from "../Dashboard/Driver/DriverRide";
+import DriverPayment from "../Dashboard/Driver/DriverPayment";
+import UpdateVehicleForm from "../Dashboard/Driver/UpdateVehicleForm";
+import VehicleStatusFromDriver from "../Dashboard/Owner/VehicleStatusFromDriver";
+
+
+
+
+
 
 
 const Router = createBrowserRouter([
@@ -31,6 +43,10 @@ const Router = createBrowserRouter([
                 path:"/reg",
                 element:<Registration></Registration>
             },
+            {
+                path:"/ride",
+                element:<PrivateRoutes><Ride></Ride></PrivateRoutes>
+            }
 
         ]
     },
@@ -51,6 +67,10 @@ const Router = createBrowserRouter([
                 element:<ServiceStatus></ServiceStatus>
             },
             {
+                path:"/dashboard/owner/vehicleStatus",
+                element:<VehicleStatusFromDriver></VehicleStatusFromDriver>
+            },
+            {
                 path:"/dashboard/admin/serviceReq",
                 element:<AdminServiceRequest></AdminServiceRequest>
             },
@@ -69,6 +89,26 @@ const Router = createBrowserRouter([
             {
                 path:"/dashboard/driver/UpdateVehicleStatus",
                 element:<UpdateVehicleStatus></UpdateVehicleStatus>
+            },
+            {
+                path:"/dashboard/passenger/ride",
+                element:<PassengerRide></PassengerRide>
+            },
+            {
+                path:"/dashboard/passenger/payment/:id/:amount/:driverEmail/:ownerEmail",
+                element:<Payment></Payment>
+            },
+            {
+                path:"/dashboard/driver/ride",
+                element:<DriverRide></DriverRide>
+            },
+            {
+                path:"/dashboard/driver/payment",
+                element:<DriverPayment></DriverPayment>
+            },
+            {
+                path:"/dashboard/updateVehicle/:route/:photo/:amount/:ownerEmail",
+                element:<UpdateVehicleForm></UpdateVehicleForm>
             }
         ]
     }
